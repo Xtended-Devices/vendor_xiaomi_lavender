@@ -1747,7 +1747,6 @@ PRODUCT_PACKAGES += \
     datastatusnotification \
     embms \
     WfdService \
-    com.qualcomm.location \
     ims \
     qcrilmsgtunnel \
     imssettings \
