@@ -38,21 +38,22 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-	name: "vendor.qti.hardware.fm@1.0",
+	name: "libsdm-disp-vndapis",
 	owner: "xiaomi",
 	strip: {
 		none: true,
 	},
 	target: {
 		android_arm: {
-			srcs: ["proprietary/lib/vendor.qti.hardware.fm@1.0.so"],
+			srcs: ["proprietary/vendor/lib/libsdm-disp-vndapis.so"],
 		},
 		android_arm64: {
-			srcs: ["proprietary/lib64/vendor.qti.hardware.fm@1.0.so"],
+			srcs: ["proprietary/vendor/lib64/libsdm-disp-vndapis.so"],
 		},
 	},
 	compile_multilib: "both",
 	prefer: true,
+	soc_specific: true,
 }
 
 cc_prebuilt_library_shared {
@@ -74,6 +75,25 @@ cc_prebuilt_library_shared {
 	soc_specific: true,
 }
 
+cc_prebuilt_library_shared {
+	name: "vendor.qti.hardware.fm@1.0",
+	owner: "xiaomi",
+	strip: {
+		none: true,
+	},
+	target: {
+		android_arm: {
+			srcs: ["proprietary/product/lib/vendor.qti.hardware.fm@1.0.so"],
+		},
+		android_arm64: {
+			srcs: ["proprietary/product/lib64/vendor.qti.hardware.fm@1.0.so"],
+		},
+	},
+	compile_multilib: "both",
+	prefer: true,
+	product_specific: true,
+}
+
 android_app_import {
 	name: "SoterService",
 	owner: "xiaomi",
@@ -88,6 +108,17 @@ android_app_import {
 	name: "WfdService",
 	owner: "xiaomi",
 	apk: "proprietary/priv-app/WfdService/WfdService.apk",
+	certificate: "platform",
+	dex_preopt: {
+		enabled: false,
+	},
+	privileged: true,
+}
+
+android_app_import {
+	name: "com.qualcomm.location",
+	owner: "xiaomi",
+	apk: "proprietary/priv-app/com.qualcomm.location/com.qualcomm.location.apk",
 	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
